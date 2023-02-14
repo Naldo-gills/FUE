@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WindowsFormsApp1",
+    "\\WindowsFormsApp1\\Forms"
   ],
-  "SelectedNode": "\\DISI-INE-FUE.sln",
+  "SelectedNode": "\\WindowsFormsApp1\\Forms\\ConsultaEmpresa.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -35,14 +35,14 @@ namespace WindowsFormsApp1.Forms
         private void ConsultaEmpresa_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'fue_dbDataSet1.fue_db' table. You can move, or remove it, as needed.
-           // this.fue_dbTableAdapter.Fill(this.fue_dbDataSet1.fue_db);
+          this.fue_dbTableAdapter.Fill(this.fue_dbDataSet1.fue_db);
             this.WindowState = FormWindowState.Maximized;
             
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count >= 0)
+            if (dataGridView1.Rows.Count > 0)
             {
                 SaveFileDialog save = new SaveFileDialog();
                 save.Filter = "PDF (*.pdf)|*.pdf";
@@ -70,6 +70,7 @@ namespace WindowsFormsApp1.Forms
                             pTable.DefaultCell.Padding = 25;
                             pTable.WidthPercentage = 100;
                             pTable.HorizontalAlignment = Element.ALIGN_LEFT;
+                            
 
                             foreach (DataGridViewColumn col in dataGridView1.Columns)
                             {
@@ -80,14 +81,15 @@ namespace WindowsFormsApp1.Forms
                             {
                                 foreach (DataGridViewCell dcell in viewRow.Cells)
                                 {
-                                    pTable.AddCell(dcell.Value.ToString());
+                                    PdfPCell adata = new PdfPCell(new Phrase(dcell.Value.ToString()));
+                                    pTable.AddCell(adata);
                                 }
                             }
 
 
                             using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
                             {
-                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
+                                Document document = new Document(PageSize.A4, 25,25,30,30);
                                 PdfWriter.GetInstance(document, fileStream);
                                 document.Open();
                                 document.Add(pTable);
